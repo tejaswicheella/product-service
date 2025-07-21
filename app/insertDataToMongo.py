@@ -27,4 +27,10 @@ with open(DATA_FILE, "r", encoding="utf-8") as f:
 #Insert products into mongodb
 collection.insert_many(products)
 
-print(f"Inserted {len(products)} products into MongoDB")
+
+#Avoid Inserting products if already exists
+if collection.count_documents({}) ==0:
+    collection.insert_many(products)
+    print(f"Inserted {len(products)} products into MongoDB")
+else:
+    print("Products already exists. Skipping insert.")
