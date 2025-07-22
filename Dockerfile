@@ -10,10 +10,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # 4. Copy code
 #COPY app/ ./app
-COPY app/ .
+COPY app/ ./app/
 
 # 5. Expose port & define startup
 EXPOSE 8000
-#CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
-CMD ["python", "insertDataToMongo.py"]
+#Use below command to insert data into mongodb
+#CMD ["python", "insertDataToMongo.py"]
